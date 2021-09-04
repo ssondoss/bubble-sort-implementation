@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <style></style>
+  </head>
+  <body style="margin: 0; padding: 0">
+    <div class="row mx-0 p-5" id="the"></div>
+
+    <script>
+      noSwap = true;
+      var y;
+
+      arr = [240, 240, 131, 399, 544, 55, 166, 642, 302, 505, 120, 70];
+      var length = 0;
+      function draw() {
+        for (k = 0; k < arr.length; k++) {
+          length = arr[k];
+          y =
+            '<div class="col-1 mx-auto px-1 text-center mt-auto"> <div class="bg-info text-white p-1 h4 " style="height:' +
+            length +
+            'px" >' +
+            length +
+            "</div> </div>";
+
+          document.getElementById("the").innerHTML += y;
+        }
+      }
+      function loop(i) {
+        document.getElementById("the").innerHTML = "";
+        draw();
+
+        for (j = 1; j < arr.length - i; j++) {
+          console.log(i);
+
+          if (arr[j - 1] > arr[j]) {
+            let replace = arr[j];
+            arr[j] = arr[j - 1];
+            arr[j - 1] = replace;
+            noSwap = false;
+          }
+        }
+      }
+      var i = 0;
+
+      function main() {
+        if (i > arr.length - 1) clearInterval(interval);
+        length = arr[i];
+        loop(i);
+
+        i++;
+      }
+
+      interval = setInterval(main, 1500);
+    </script>
+  </body>
+</html>
